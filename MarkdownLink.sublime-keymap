@@ -1,0 +1,9 @@
+[
+    {
+        "keys": ["ctrl+1"],
+        "command": "markdown_link",
+        "context": [
+            { "key": "selector", "operator": "equal", "operand": "source.md, source.mdx" }
+        ]
+    }
+]
