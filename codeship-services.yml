@@ -1,0 +1,7 @@
+test:
+  build:
+    image: sublime3
+    dockerfile: Dockerfile
+  environment:
+    PACKAGE: 'MarkdownLink'
+    SUBLIME_TEXT_VERSION: '3'
