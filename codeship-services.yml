@@ -5,3 +5,9 @@ test:
   environment:
     PACKAGE: 'MarkdownLink'
     SUBLIME_TEXT_VERSION: '3'
+
+node:
+  image: node:12
+  volumes:
+    - '.:/wd'
+  working_dir: /wd
