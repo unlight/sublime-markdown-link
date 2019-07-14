@@ -55,4 +55,6 @@ python "$STP/UnitTesting/sbin/run_tests.py" "$PACKAGE"
 
 pkill "[Ss]ubl" || true
 pkill 'plugin_host' || true
-sleep 2
+sleep 1
+
+st_package_reviewer -v /wd

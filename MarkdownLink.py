@@ -6,7 +6,7 @@ from .Utils import convert_markdown_link
 # http://example.com
 # foo://example.com
 
-class MarkdownLink(sublime_plugin.TextCommand):
+class MarkdownLinkCommand(sublime_plugin.TextCommand):
 
     def run(self, edit):
         for selection in self.view.sel():
