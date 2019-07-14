@@ -1,7 +1,8 @@
 import sublime
-import sys
+# import sys
 from unittest import TestCase
-# import_helper = sys.modules['ImportHelper.import_helper']
+# MarkdownLink = sys.modules['MarkdownLink.MarkdownLink']
+# print("sys.modules", sys.modules)
 # utils = sys.modules['ImportHelper.utils']
 
 class TestMarkdownLink(TestCase):
@@ -24,8 +25,15 @@ class TestMarkdownLink(TestCase):
 
     def testConvertLinkExample(self):
         setText(self.view, 'http://example.com/')
+        self.view.run_command('select_all')
         self.view.run_command('markdown_link')
         self.assertEqual('[Example Domain](http://example.com/)', getAll(self.view))
+
+    def testUnknownUrl(self):
+        setText(self.view, 'unknown://example.com/')
+        self.view.run_command('select_all')
+        self.view.run_command('markdown_link')
+        self.assertEqual('unknown://example.com/', getAll(self.view))
 
 def setText(view, string):
     view.run_command('select_all')
