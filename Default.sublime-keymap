@@ -1,0 +1,6 @@
+[
+    {
+        "keys": ["ctrl+1"],
+        "command": "markdown_link"
+    }
+]
