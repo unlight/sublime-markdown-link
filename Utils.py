@@ -1,10 +1,14 @@
-from urllib.request import urlopen
+from urllib.request import urlopen, Request
 from string import Template
 import re
 
 def get_file_contents(url):
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64)',
+    }
+    req = Request(url = url, headers = headers)
     try:
-        return urlopen(url).read().decode('utf-8')
+        return urlopen(req).read().decode('utf-8')
     except Exception as e:
         return None
 
@@ -19,7 +23,9 @@ def convert_markdown_link(link, content = None):
         if match is not None:
             name = match.group(1)
             if name is not None and len(name) > 0:
+                name = name.replace('&nbsp;', ' ')
                 name = re.sub(r'\s', ' ', name)
+                name = re.sub(r'\s+', ' ', name)
                 name = re.sub(r'\s+', ' ', name)
                 name = name.strip()
                 result = markdown_link_template.substitute(name = name, link = link)
