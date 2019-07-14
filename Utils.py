@@ -15,9 +15,12 @@ def convert_markdown_link(link, content = None):
     if content is None:
         content = get_file_contents(link)
     if content is not None and len(content) > 0:
-        match = re.search(r'<h1[^>]*>(.+?)</h1>', content)
+        match = re.search(r'<h1[^>]*>(.+?)</h1>', content, re.DOTALL)
         if match is not None:
             name = match.group(1)
             if name is not None and len(name) > 0:
+                name = re.sub(r'\s', ' ', name)
+                name = re.sub(r'\s+', ' ', name)
+                name = name.strip()
                 result = markdown_link_template.substitute(name = name, link = link)
     return result

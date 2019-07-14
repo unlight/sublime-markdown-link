@@ -1,9 +1,8 @@
 import sublime
-# import sys
+import sys
 from unittest import TestCase
-# MarkdownLink = sys.modules['MarkdownLink.MarkdownLink']
-# print("sys.modules", sys.modules)
-# utils = sys.modules['ImportHelper.utils']
+MarkdownLink = sys.modules['MarkdownLink.MarkdownLink']
+Utils = sys.modules['MarkdownLink.Utils']
 
 class TestMarkdownLink(TestCase):
 
@@ -27,13 +26,27 @@ class TestMarkdownLink(TestCase):
         setText(self.view, 'http://example.com/')
         self.view.run_command('select_all')
         self.view.run_command('markdown_link')
+        yield 1000
         self.assertEqual('[Example Domain](http://example.com/)', getAll(self.view))
 
     def testUnknownUrl(self):
         setText(self.view, 'unknown://example.com/')
         self.view.run_command('select_all')
         self.view.run_command('markdown_link')
+        yield 1000
         self.assertEqual('unknown://example.com/', getAll(self.view))
+
+    def testUtils_convert_markdown_link(self):
+        result = Utils.convert_markdown_link('http://example.com', '<h1>Example</h1>')
+        self.assertEqual(result, '[Example](http://example.com)')
+
+    def testUtils_convert_markdown_link_attributes(self):
+        result = Utils.convert_markdown_link('http://example.com', '<h1 id="x">Example</h1>')
+        self.assertEqual(result, '[Example](http://example.com)')
+
+    def testUtils_convert_markdown_link_multiline_normalize(self):
+        result = Utils.convert_markdown_link('http://example.com', '<h1\n id="x"\n> Example\nX </h1>')
+        self.assertEqual(result, '[Example X](http://example.com)')
 
 def setText(view, string):
     view.run_command('select_all')
