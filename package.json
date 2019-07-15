@@ -1,4 +1,7 @@
 {
+  "name": "MarkdownLink",
+  "description": "Convert url to markdown link where description is title from remote url",
+  "version": "0.0.0-dev",
   "devDependencies": {
     "@semantic-release/changelog": "^3.0.4",
     "@semantic-release/commit-analyzer": "^6.2.0",
@@ -6,5 +9,20 @@
     "@semantic-release/github": "^5.4.2",
     "@semantic-release/release-notes-generator": "^7.2.1",
     "semantic-release": "^15.13.18"
-  }
+  },
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unlight/sublime-markdown-link.git"
+  },
+  "keywords": [
+    "markdown",
+    "sublime-plugin"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/unlight/sublime-markdown-link/issues"
+  },
+  "homepage": "https://github.com/unlight/sublime-markdown-link#readme"
 }
