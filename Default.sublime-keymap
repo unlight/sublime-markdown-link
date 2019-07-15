@@ -1,0 +1,6 @@
+[
+    {
+        "keys": ["alt+shift+m", "alt+shift+l"],
+        "command": "markdown_link"
+    }
+]

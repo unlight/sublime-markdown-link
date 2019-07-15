@@ -50,3 +50,4 @@ typings/
 .rts2_cache_*
 .stryker-tmp
 reports
+*.aes

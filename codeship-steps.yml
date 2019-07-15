@@ -1,0 +1,14 @@
+-
+  type: serial
+  steps:
+    -
+      service: test
+      command: sh test.sh
+    -
+      service: node
+      tag: master
+      command: npm install
+    -
+      service: node
+      tag: master
+      command: npx semantic-release -d
