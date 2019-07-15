@@ -26,14 +26,12 @@ class TestMarkdownLink(TestCase):
         setText(self.view, 'http://example.com/')
         self.view.run_command('select_all')
         self.view.run_command('markdown_link')
-        yield 1000
         self.assertEqual('[Example Domain](http://example.com/)', getAll(self.view))
 
     def testUnknownUrl(self):
         setText(self.view, 'unknown://example.com/')
         self.view.run_command('select_all')
         self.view.run_command('markdown_link')
-        yield 1000
         self.assertEqual('unknown://example.com/', getAll(self.view))
 
     def testUtils_convert_markdown_link(self):
