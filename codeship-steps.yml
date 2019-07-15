@@ -11,4 +11,4 @@
     -
       service: node
       tag: master
-      command: npx semantic-release
+      command: npx semantic-release -d
