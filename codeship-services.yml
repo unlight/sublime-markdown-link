@@ -11,3 +11,5 @@ node:
   volumes:
     - '.:/wd'
   working_dir: /wd
+  encrypted_env_file:
+    - env.encrypted
