@@ -29,20 +29,26 @@ def convert_markdown_link(link, content = None):
 
 def find_content_title(content):
     soup = BeautifulSoup(content, 'html.parser')
-    target = None
+    candidate_elements = []
     elements = soup.select('[itemprop="name"], h1')
     for element in elements:
-        target = element
         if element.attrs.get('itemprop') == 'name':
+            candidate_elements.insert(0, element)
             break
         elif element.name == 'h1' and element.attrs.get('class') != None:
             class_name = element.attrs.get('class')
             for name in ['post-title', 'entry-title', 'page-title']:
                 if name in class_name:
+                    pos = min(len(candidate_elements), 1)
+                    candidate_elements.insert(pos, element)
                     break
-    if not target:
+        else:
+            candidate_elements.append(element)
+
+    if len(candidate_elements) == 0:
         return None
-    return target.get_text()
+    element = candidate_elements[0]
+    return element.get_text()
 
 def normalize_string(s):
     s = s.replace('&nbsp;', ' ')
