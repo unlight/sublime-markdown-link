@@ -1,32 +1,52 @@
 from urllib.request import urlopen, Request
 from string import Template
 import re
+from urllib.error import URLError
+from .MarkdownLink import BeautifulSoup
 
 def get_file_contents(url):
     headers = {
         'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64)',
     }
-    req = Request(url = url, headers = headers)
     try:
+        req = Request(url = url, headers = headers)
         return urlopen(req).read().decode('utf-8')
-    except Exception as e:
-        return None
+    except URLError: return None
+    except ValueError: return None
 
-markdown_link_template = Template('[$name]($link)')
+markdown_link_template = Template('[$title]($link)')
 
 def convert_markdown_link(link, content = None):
     result = link
     if content is None:
         content = get_file_contents(link)
     if content is not None and len(content) > 0:
-        match = re.search(r'<h1[^>]*>(.+?)</h1>', content, re.DOTALL)
-        if match is not None:
-            name = match.group(1)
-            if name is not None and len(name) > 0:
-                name = name.replace('&nbsp;', ' ')
-                name = re.sub(r'\s', ' ', name)
-                name = re.sub(r'\s+', ' ', name)
-                name = re.sub(r'\s+', ' ', name)
-                name = name.strip()
-                result = markdown_link_template.substitute(name = name, link = link)
+        title = find_content_title(content)
+        if title is not None and len(title) > 0:
+            title = normalize_string(title)
+            result = markdown_link_template.substitute(title = title, link = link)
     return result
+
+def find_content_title(content):
+    soup = BeautifulSoup(content, 'html.parser')
+    target = None
+    elements = soup.select('[itemprop="name"], h1')
+    for element in elements:
+        target = element
+        if element.attrs.get('itemprop') == 'name':
+            break
+        elif element.name == 'h1' and element.attrs.get('class') != None:
+            class_name = element.attrs.get('class')
+            for name in ['post-title', 'entry-title', 'page-title']:
+                if name in class_name:
+                    break
+    if not target:
+        return None
+    return target.get_text()
+
+def normalize_string(s):
+    s = s.replace('&nbsp;', ' ')
+    s = re.sub(r'\s', ' ', s)
+    s = re.sub(r'\s+', ' ', s)
+    s = s.strip()
+    return s
