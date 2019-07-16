@@ -4,16 +4,6 @@ import re
 from urllib.error import URLError
 from .MarkdownLink import BeautifulSoup
 
-def get_file_contents(url):
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64)',
-    }
-    try:
-        req = Request(url = url, headers = headers)
-        return urlopen(req).read().decode('utf-8')
-    except URLError: return None
-    except ValueError: return None
-
 markdown_link_template = Template('[$title]($link)')
 
 def convert_markdown_link(link, content = None):
@@ -35,16 +25,14 @@ def find_content_title(content):
         if element.attrs.get('itemprop') == 'name':
             candidate_elements.insert(0, element)
             break
-        elif element.name == 'h1' and element.attrs.get('class') != None:
-            class_name = element.attrs.get('class')
+        elif element.name == 'h1':
+            class_name = element.attrs.get('class') or ''
             for name in ['post-title', 'entry-title', 'page-title']:
                 if name in class_name:
                     pos = min(len(candidate_elements), 1)
                     candidate_elements.insert(pos, element)
                     break
-        else:
             candidate_elements.append(element)
-
     if len(candidate_elements) == 0:
         return None
     element = candidate_elements[0]
@@ -56,3 +44,13 @@ def normalize_string(s):
     s = re.sub(r'\s+', ' ', s)
     s = s.strip()
     return s
+
+def get_file_contents(url):
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64)',
+    }
+    try:
+        req = Request(url = url, headers = headers)
+        return urlopen(req).read().decode('utf-8')
+    except URLError: return None
+    except ValueError: return None
