@@ -12,6 +12,8 @@ if [ -z $DISPLAY ]; then
     export DISPLAY=:1
 fi
 
+xhost +
+
 if [ $DISPLAY ]; then
     sh -e /etc/init.d/xvfb start
 fi

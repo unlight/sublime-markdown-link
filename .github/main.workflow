@@ -20,13 +20,13 @@ action "Master" {
 
 action "Install" {
   needs = ["Master"]
-  uses = "actions/npm@master"
-  runs = "npm i"
+  uses = "docker://node:12"
+  runs = "npm install"
 }
 
 action "Publish" {
   needs = ["Install", "Master"]
-  uses = "actions/npm@master"
+  uses = "docker://node:12"
   runs = "npx semantic release -d"
   secrets = ["GITHUB_TOKEN"]
 }
