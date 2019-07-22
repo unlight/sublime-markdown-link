@@ -12,6 +12,8 @@ if [ -z $DISPLAY ]; then
     export DISPLAY=:1
 fi
 
+xhost +
+
 if [ $DISPLAY ]; then
     sh -e /etc/init.d/xvfb start
 fi
@@ -55,6 +57,6 @@ python "$STP/UnitTesting/sbin/run_tests.py" "$PACKAGE"
 
 pkill "[Ss]ubl" || true
 pkill 'plugin_host' || true
-sleep 5
+sleep 1
 
 st_package_reviewer -v /wd
