@@ -21,6 +21,6 @@ action "Master" {
 action "Publish" {
   needs = ["Master"]
   uses = "docker://node:12"
-  runs = "npm install && npx semantic release -d"
+  runs = "npm run release"
   secrets = ["GITHUB_TOKEN"]
 }
