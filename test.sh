@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -e -x
 STP="$HOME/.config/sublime-text-$SUBLIME_TEXT_VERSION/Packages"
 
 if [ ! -f /etc/init.d/xvfb ]; then
@@ -11,8 +11,6 @@ fi
 if [ -z $DISPLAY ]; then
     export DISPLAY=:1
 fi
-
-xhost +
 
 if [ $DISPLAY ]; then
     sh -e /etc/init.d/xvfb start
