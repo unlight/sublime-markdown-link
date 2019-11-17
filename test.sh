@@ -2,6 +2,8 @@
 set -e -x
 STP="$HOME/.config/sublime-text-$SUBLIME_TEXT_VERSION/Packages"
 
+xhost +
+
 if [ ! -f /etc/init.d/xvfb ]; then
     echo installing xvfb controller
     wget -O /etc/init.d/xvfb https://gist.githubusercontent.com/randy3k/9337122/raw/xvfb
