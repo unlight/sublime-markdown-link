@@ -16,6 +16,8 @@ if [ $DISPLAY ]; then
     sh -e /etc/init.d/xvfb start
 fi
 
+xhost +
+
 if [ ! -d "$STP/$PACKAGE" ]; then
     # symlink does not play well with coverage
     echo "copy the package to sublime package directory"
