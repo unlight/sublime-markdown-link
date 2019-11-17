@@ -2,11 +2,11 @@
 set -e -x
 STP="$HOME/.config/sublime-text-$SUBLIME_TEXT_VERSION/Packages"
 
-if [ ! -f /etc/init.d/xvfb ]; then
-    echo installing xvfb controller
-    wget -O /etc/init.d/xvfb https://gist.githubusercontent.com/randy3k/9337122/raw/xvfb
-    chmod +x /etc/init.d/xvfb
-fi
+# if [ ! -f /etc/init.d/xvfb ]; then
+#     echo installing xvfb controller
+#     wget -O /etc/init.d/xvfb https://gist.githubusercontent.com/randy3k/9337122/raw/xvfb
+#     chmod +x /etc/init.d/xvfb
+# fi
 
 if [ -z $DISPLAY ]; then
     export DISPLAY=:1
