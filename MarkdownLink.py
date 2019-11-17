@@ -2,11 +2,7 @@ import sublime
 import sublime_plugin
 import os
 import sys
-# stupid python module system
-package_directory = os.path.dirname(os.path.realpath(__file__))
-sys.path.append(package_directory)
 from bs4 import BeautifulSoup
-sys.path.remove(package_directory)
 from .Utils import convert_markdown_link
 
 # view.run_command('markdown_link', args=({}))

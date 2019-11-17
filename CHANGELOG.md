@@ -1,3 +1,11 @@
+## [1.0.1](https://github.com/unlight/sublime-markdown-link/compare/v1.0.0...v1.0.1) (2019-07-22)
+
+
+### Bug Fixes
+
+* Added .no-sublime-package because we are using 3rd party packages ([26b7e1a](https://github.com/unlight/sublime-markdown-link/commit/26b7e1a))
+* Improved title detection ([a2668e7](https://github.com/unlight/sublime-markdown-link/commit/a2668e7))
+
 # 1.0.0 (2019-07-16)
 
 

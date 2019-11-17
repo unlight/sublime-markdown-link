@@ -2,7 +2,7 @@ from urllib.request import urlopen, Request
 from string import Template
 import re
 from urllib.error import URLError
-from .MarkdownLink import BeautifulSoup
+from bs4 import BeautifulSoup
 
 markdown_link_template = Template('[$title]($link)')
 

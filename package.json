@@ -10,7 +10,9 @@
     "@semantic-release/release-notes-generator": "^7.2.1",
     "semantic-release": "^15.13.18"
   },
-  "scripts": {},
+  "scripts": {
+    "release": "npm install && semantic-release"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/unlight/sublime-markdown-link.git"
