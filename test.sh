@@ -2,8 +2,6 @@
 set -e -x
 STP="$HOME/.config/sublime-text-$SUBLIME_TEXT_VERSION/Packages"
 
-xhost +
-
 if [ ! -f /etc/init.d/xvfb ]; then
     echo installing xvfb controller
     wget -O /etc/init.d/xvfb https://gist.githubusercontent.com/randy3k/9337122/raw/xvfb
@@ -13,6 +11,8 @@ fi
 if [ -z $DISPLAY ]; then
     export DISPLAY=:1
 fi
+
+xhost +
 
 if [ $DISPLAY ]; then
     sh -e /etc/init.d/xvfb start
