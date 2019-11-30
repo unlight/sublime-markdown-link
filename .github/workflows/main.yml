@@ -35,6 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     # if: contains(github.ref, 'master')
     steps:
+      - run: sudo apt-get install git -y
       - run: git remote -v
       - uses: actions/setup-node@v1
         with:
