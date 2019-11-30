@@ -19,9 +19,9 @@ jobs:
       - run: sudo chmod +x /etc/init.d/xvfb
       - run: sudo cp docker.sh /docker.sh
       - run: sudo chmod +x /docker.sh
-      - run: sudo cp entrypoint.sh /entrypoint.sh
-      - run: sudo chmod 666 /entrypoint.sh
-      - run: sudo chmod +x /entrypoint.sh
+      # - run: sudo cp entrypoint.sh /entrypoint.sh
+      # - run: sudo chmod 666 /entrypoint.sh
+      # - run: sudo chmod +x /entrypoint.sh
       - run: echo $HOME
       # RUN adduser --disabled-password --gecos '' docker
       # RUN adduser docker sudo
@@ -34,8 +34,14 @@ jobs:
           DISPLAY: ':1'
           LANGUAGE: 'en_US.UTF-8'
           LANG: 'en_US.UTF-8'
-        run: /entrypoint.sh
+        run: |
+          echo PACKAGE = $PACKAGE
+          sudo sh -e /etc/init.d/xvfb start
+          /docker.sh bootstrap
+          /docker.sh install_package_control
+          /docker.sh run_tests --coverage
 
+      # sudo ln -s "$HOME/sublime_text_3/sublime_text" /usr/bin/subl
       # -
       #   name: test
       #   env:
