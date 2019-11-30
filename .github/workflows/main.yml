@@ -36,7 +36,9 @@ jobs:
     needs: test
     if: contains(github.ref, 'master')
     steps:
-      - uses: docker://node:12
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12'
       - env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm install && npx semantic-release
