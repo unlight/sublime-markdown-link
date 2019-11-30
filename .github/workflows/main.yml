@@ -1,10 +1,6 @@
-name: test, publish
-
-on:
-  - push
-
+name: Main
+on: ['push']
 jobs:
-
   test:
     runs-on: ubuntu-latest
     steps:
@@ -22,20 +18,17 @@ jobs:
       - run: export DISPLAY=:1
       - run: sudo cp xvfb /etc/init.d/xvfb
       - run: sudo chmod +x /etc/init.d/xvfb
-
-      # COPY docker.sh /docker.sh
-      # RUN chmod +x /docker.sh
-      # COPY entrypoint.sh /entrypoint.sh
-      # RUN chmod 666 /entrypoint.sh
-      # RUN chmod +x /entrypoint.sh
-
+      - run: sudo cp docker.sh /docker.sh
+      - run: sudo chmod +x /docker.sh
+      - run: sudo cp entrypoint.sh /entrypoint.sh
+      - run: sudo chmod 666 /entrypoint.sh
+      - run: sudo chmod +x /entrypoint.sh
       # RUN adduser --disabled-password --gecos '' docker
       # RUN adduser docker sudo
       # RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
       # USER docker
       # WORKDIR /home/docker/project
-      # ENTRYPOINT ["/entrypoint.sh"]
-
+      - run: /entrypoint.sh
 
       # -
       #   name: test
