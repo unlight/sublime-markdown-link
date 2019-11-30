@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+      - run: sudo -s
       - run: apt-get update
       - run: apt-get install --no-install-recommends sudo apt-utils  -y
       - run: apt-get install --no-install-recommends python software-properties-common  -y
