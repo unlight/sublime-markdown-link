@@ -28,6 +28,7 @@ jobs:
       # RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
       # USER docker
       - run: cd /home/docker/project
+      - run: export PACKAGE=MarkdownLink
       - run: /entrypoint.sh
 
       # -
