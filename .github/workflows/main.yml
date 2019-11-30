@@ -26,11 +26,12 @@ jobs:
       - run: sudo cp entrypoint.sh /entrypoint.sh
       - run: sudo chmod 666 /entrypoint.sh
       - run: sudo chmod +x /entrypoint.sh
+      - run: ls -1 $HOME
       # RUN adduser --disabled-password --gecos '' docker
       # RUN adduser docker sudo
       # RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
       # USER docker
-      - run: cd /home/docker/project
+      # - run: cd /home/docker/project
       - run: export PACKAGE=MarkdownLink
       - run: /entrypoint.sh
 
