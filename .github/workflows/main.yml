@@ -27,7 +27,7 @@ jobs:
       # RUN adduser docker sudo
       # RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
       # USER docker
-      # WORKDIR /home/docker/project
+      - run: cd /home/docker/project
       - run: /entrypoint.sh
 
       # -
