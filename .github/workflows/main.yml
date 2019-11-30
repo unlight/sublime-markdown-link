@@ -16,10 +16,10 @@ jobs:
       - run: sudo apt-get install --no-install-recommends libglib2.0-0 libgtk-3-0 -y
       - run: sudo apt-get install --no-install-recommends psmisc -y
       - run: sudo apt-get install --no-install-recommends locales locales-all -y
-      - run: sudo export LANG=en_US.UTF-8
-      - run: sudo export LANGUAGE=en_US.UTF-8
-      - run: sudo export SUBLIME_TEXT_VERSION=3
-      - run: sudo export DISPLAY=:1
+      - run: export LANG=en_US.UTF-8
+      - run: export LANGUAGE=en_US.UTF-8
+      - run: export SUBLIME_TEXT_VERSION=3
+      - run: export DISPLAY=:1
       - run: sudo cp xvfb /etc/init.d/xvfb
       - run: sudo chmod +x /etc/init.d/xvfb
 
