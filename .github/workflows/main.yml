@@ -9,23 +9,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      # - uses: ./.docker
-      - run: |
-        apt-get update
-        apt-get install --no-install-recommends sudo apt-utils  -y
-        apt-get install --no-install-recommends python software-properties-common  -y
-        apt-get install --no-install-recommends git curl xvfb  -y
-        apt-get install --no-install-recommends libglib2.0-0 libgtk-3-0 -y
-        apt-get install --no-install-recommends psmisc -y
-        apt-get install --no-install-recommends locales locales-all -y
-
-        export LANG=en_US.UTF-8
-        export LANGUAGE=en_US.UTF-8
-        export SUBLIME_TEXT_VERSION=3
-
-        export DISPLAY=:1
-        cp xvfb /etc/init.d/xvfb
-        chmod +x /etc/init.d/xvfb
+      - run: apt-get update
+      - run: apt-get install --no-install-recommends sudo apt-utils  -y
+      - run: apt-get install --no-install-recommends python software-properties-common  -y
+      - run: apt-get install --no-install-recommends git curl xvfb  -y
+      - run: apt-get install --no-install-recommends libglib2.0-0 libgtk-3-0 -y
+      - run: apt-get install --no-install-recommends psmisc -y
+      - run: apt-get install --no-install-recommends locales locales-all -y
+      - run: export LANG=en_US.UTF-8
+      - run: export LANGUAGE=en_US.UTF-8
+      - run: export SUBLIME_TEXT_VERSION=3
+      - run: export DISPLAY=:1
+      - run: cp xvfb /etc/init.d/xvfb
+      - run: chmod +x /etc/init.d/xvfb
 
       # COPY docker.sh /docker.sh
       # RUN chmod +x /docker.sh
