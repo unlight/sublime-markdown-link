@@ -36,6 +36,7 @@ jobs:
     needs: test
     if: contains(github.ref, 'master')
     steps:
+      - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
           node-version: '12'
