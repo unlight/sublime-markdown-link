@@ -66,7 +66,11 @@ def get_file_contents(url):
     try:
         req = Request(url=url, headers=headers)
         return urlopen(req).read().decode("utf-8")
-    except URLError:
-        return None
-    except ValueError:
-        return None
+    except Exception as err:
+        print("MarkdownLink Request Error " + url + " " + str(err))
+    return None
+
+
+def clean_link(s):
+    s = s.strip()
+    return s
