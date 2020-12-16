@@ -8,6 +8,7 @@ markdown_link_template = Template("[$title]($link)")
 
 
 def convert_markdown_link(link, content=None):
+    link = clean_link(link)
     result = link
     if content is None:
         content = get_file_contents(link)
@@ -21,25 +22,22 @@ def convert_markdown_link(link, content=None):
 
 def find_content_title(content):
     soup = BeautifulSoup(content, "html.parser")
-    candidate_elements = [[], [], []]
-    elements = soup.select('[itemprop="name"], h1')
+    elements = soup.select('[itemprop="name"], [property="og:title"], h1, title')
     for element in elements:
-        if element.attrs.get("itemprop") == "name":
-            candidate_elements[0].append(element)
-            break
-        elif element.name == "h1":
+        if (
+            element.attrs.get("itemprop") == "name"
+            or element.attrs.get("property") == "og:title"
+        ):
+            return element.attrs.get("content")
+        if element.name == "h1":
             class_name = normalize_class_name(element.attrs.get("class"))
             for name in ["post-title", "entry-title", "page-title"]:
                 if name in class_name:
-                    candidate_elements[1].append(element)
-            candidate_elements[2].append(element)
-    candidate_elements = [
-        element for sublist in candidate_elements for element in sublist
-    ]
-    if len(candidate_elements) == 0:
-        return None
-    element = candidate_elements[0]
-    return element.get_text()
+                    return element.get_text()
+            return element.get_text()
+        if element.name == "title":
+            return element.get_text()
+    return None
 
 
 def normalize_class_name(name):

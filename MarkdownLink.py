@@ -8,6 +8,7 @@ from .Utils import convert_markdown_link
 # view.run_command('markdown_link', args=({}))
 # http://example.com
 # foo://example.com
+# https://www.youtube.com/watch?v=wZti8QKBWPo
 
 
 class MarkdownLinkCommand(sublime_plugin.TextCommand):

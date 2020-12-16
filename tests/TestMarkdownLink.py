@@ -51,6 +51,16 @@ class TestMarkdownLink(TestCase):
         )
         self.assertEqual(result, "[Example X](http://example.com)")
 
+    def test_clean_link_trim(self):
+        result = Utils.clean_link(" http://localhost ")
+        self.assertEqual(result, "http://localhost")
+
+    def testUtils_convert_markdown_link_dirty_url(self):
+        result = Utils.convert_markdown_link(
+            "http://example.com", '<h1\n id="x"\n>A</h1>'
+        )
+        self.assertEqual(result, "[A](http://example.com)")
+
 
 def setText(view, string):
     view.run_command("select_all")
