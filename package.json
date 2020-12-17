@@ -3,12 +3,12 @@
   "description": "Convert url to markdown link where description is title from remote url",
   "version": "0.0.0-dev",
   "devDependencies": {
-    "@semantic-release/changelog": "^3.0.4",
-    "@semantic-release/commit-analyzer": "^6.2.0",
-    "@semantic-release/git": "^7.0.16",
-    "@semantic-release/github": "^5.4.2",
-    "@semantic-release/release-notes-generator": "^7.2.1",
-    "semantic-release": "^15.13.18"
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/commit-analyzer": "^8.0.1",
+    "@semantic-release/git": "^9.0.0",
+    "@semantic-release/github": "^7.2.0",
+    "@semantic-release/release-notes-generator": "^9.0.1",
+    "semantic-release": "^17.3.0"
   },
   "scripts": {},
   "repository": {
