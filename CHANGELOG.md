@@ -1,3 +1,15 @@
+# [1.2.0](https://github.com/unlight/sublime-markdown-link/compare/v1.1.0...v1.2.0) (2020-12-17)
+
+
+### Bug Fixes
+
+* Show error when fails ([49de017](https://github.com/unlight/sublime-markdown-link/commit/49de017)), closes [#10](https://github.com/unlight/sublime-markdown-link/issues/10)
+
+
+### Features
+
+* Improve title detection ([7fc77ab](https://github.com/unlight/sublime-markdown-link/commit/7fc77ab))
+
 # [1.1.0](https://github.com/unlight/sublime-markdown-link/compare/v1.0.1...v1.1.0) (2019-11-30)
 
 
